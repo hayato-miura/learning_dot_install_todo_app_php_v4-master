@@ -17,7 +17,7 @@ try {
     );
 }catch (PDOException $e) {
   echo "PDOException: " . $e->getMessage();
-  exit();
+  // exit();
 }
 
 function getTodos($pdo) {
@@ -26,8 +26,12 @@ function getTodos($pdo) {
   return $todos;
 }
 
+function h($str){
+  return htmlspecialchars($str, ENT_QUOTES, 'UTF-8');
+}
+
 $todos = getTodos($pdo);
-var_dump($todos);
+// var_dump($todos);
 
 ?>
 
@@ -46,18 +50,14 @@ var_dump($todos);
   <h1>Todos</h1>
 
   <ul>
-    <li>
-      <input type="checkbox" >
-      <span>Title</span>
+    <?php  foreach ($todos as  $todo):   ?>
+      <li>
+      <input type="checkbox" <?= $todo -> is_done ? 'checked':'' ?>>
+      <span class="<?= $todo -> is_done ? 'checked':'' ?>">
+        <?= h($todo->title);  ?>
+      </span>
     </li>
-    <li>
-      <input type="checkbox" checked>
-      <span class="done">Title</span>
-    </li>
-    <li>
-      <input type="checkbox" >
-      <span>Title</span>
-    </li>
+    <?php  endforeach;   ?>
   </ul>
 </body>
 </html>
