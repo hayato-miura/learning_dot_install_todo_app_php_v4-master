@@ -2,7 +2,7 @@
 define('DSN','mysql:host=db;dbname=myapp;charset=utf8mb4');
 define('DB_USER','myappuser');
 define('DB_PASS','myapppass');
-
+define ('SITE_URL','https://'.$_SERVER['HTTP_HOST']);
 
 try {
   $pdo = new PDO(
@@ -41,6 +41,8 @@ function h($str){
 
 if($_SERVER['REQUEST_METHOD'] == 'POST'){
   addTodo($pdo);
+  header ('Location:'.SITE_URL);
+  exit;
 }
 
 $todos = getTodos($pdo);
