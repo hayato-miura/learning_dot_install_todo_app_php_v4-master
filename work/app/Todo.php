@@ -21,7 +21,10 @@ class Todo{
               break;
             case 'delete':
                 $this->delete();
-              break;
+                break;
+            case 'purge':
+                $this ->purge();
+               break;
               default:
               exit;
           }
@@ -60,6 +63,10 @@ class Todo{
     $stmt ->execute();
 }
 
+private function purge()
+{
+    $this -> pdo ->query("DELETE FROM todos WHERE is_done=1");
+}
     public function getAll()
 {
   $stmt = $this->pdo->query("SELECT * FROM todos ORDER BY id DESC");

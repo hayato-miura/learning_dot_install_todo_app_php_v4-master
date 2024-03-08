@@ -18,4 +18,15 @@
             span.parentNode.submit();
         });
     });
+
+    const purge = document.querySelector('.purge');  
+    purge.addEventListener('click', () => {
+        if(!confirm('Are you sure you want to delete?')){
+            return ;
+        }
+        purge.parentNode.submit();
+    });
+
+
+
 }
