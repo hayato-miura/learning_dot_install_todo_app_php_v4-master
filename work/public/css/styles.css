@@ -11,3 +11,8 @@ li{
     text-decoration: line-through;
     color: #ccc;
 }
+
+.delete{
+    color: #ccc;
+    cursor: pointer;
+}
