@@ -9,7 +9,11 @@ define('SITE_URL', 'http://' . $_SERVER['HTTP_HOST']);
 
 
 spl_autoload_register(function ($class){
-    $fileName = sprintf(__DIR__.'/%s.php',$class);
+    $prefix = 'MyApp\\';
+    if(strpos($class,$prefix)===0){
+
+        
+    $fileName = sprintf(__DIR__.'/%s.php',substr($class,strlen($prefix)));
     if (file_exists($fileName)) {
         # code...
         require($fileName);
@@ -17,6 +21,9 @@ spl_autoload_register(function ($class){
         echo 'File not found; '.$fileName;
         exit;
     }
+    
+    }
+
 
 
 });

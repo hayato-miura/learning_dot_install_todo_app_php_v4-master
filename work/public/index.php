@@ -2,6 +2,10 @@
 
 require_once(__DIR__ . '/../app/config.php');
 
+
+use MyApp\Database;
+use MyApp\Todo;
+use MyApp\Utils;
 $pdo = Database::getInstance();
 
 $todo = new Todo($pdo);
