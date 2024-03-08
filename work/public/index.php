@@ -36,11 +36,12 @@ $todos = $todo -> getAll();
     <ul>
       <?php foreach ($todos as $todo): ?>
       <li>
-        <form action="?action=toggle" method="post">
-        <input type="checkbox" <?= $todo->is_done ? 'checked' : ''; ?>>
-        <input type="hidden" name="id" value="<?= Utils::h($todo->id) ?>">
-        <input type="hidden" name="token" value="<?= Utils::h($_SESSION['token']); ?>">
-        </form>
+        
+        <input type="checkbox" 
+        data-id="<?= Utils::h($todo->id) ?>"
+        data-token="<?= Utils::h($_SESSION['token']); ?>"
+        <?= $todo->is_done ? 'checked' : ''; ?>>
+  
         <span class="<?= $todo->is_done ? 'done' : ''; ?>">
           <?= Utils::h($todo->title); ?>
         </span>
