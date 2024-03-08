@@ -12,6 +12,9 @@
     const deletes = document.querySelectorAll('.delete');  
     deletes.forEach(span => {
         span.addEventListener('click', () => {
+            if(!confirm('Are you sure you want to delete?')){
+                return ;
+            }
             span.parentNode.submit();
         });
     });
