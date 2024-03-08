@@ -40,33 +40,32 @@ $todos = getTodos($pdo);
   <link rel="stylesheet" href="css/styles.css">
 </head>
 <body>
-  <h1>Todos</h1>
-
-  <form action="?action=add" method="post">
-    <input type="text" name="title" placeholder="Type new todo.">
-    <input type="hidden" name="token" value="<?= h($_SESSION['token']); ?>">
-  </form>
-
-  <ul>
-    <?php foreach ($todos as $todo): ?>
-    <li>
-      <form action="?action=toggle" method="post">
-      <input type="checkbox" <?= $todo->is_done ? 'checked' : ''; ?>>
-      <input type="hidden" name="id" value="<?= h($todo->id) ?>">
+  <main>
+    <h1>Todos</h1>
+    <form action="?action=add" method="post">
+      <input type="text" name="title" placeholder="Type new todo.">
       <input type="hidden" name="token" value="<?= h($_SESSION['token']); ?>">
-      </form>
-      <span class="<?= $todo->is_done ? 'done' : ''; ?>">
-        <?= h($todo->title); ?>
-      </span>
-
-      <form action="?action=delete" method="post">
-        <span class="delete">x</span>
-      <input type="hidden" name="id" value="<?= h($todo->id) ?>">
-      <input type="hidden" name="token" value="<?= h($_SESSION['token']); ?>">
-      </form>
-    </li>
-    <?php endforeach; ?>
-  </ul>
+    </form>
+    <ul>
+      <?php foreach ($todos as $todo): ?>
+      <li>
+        <form action="?action=toggle" method="post">
+        <input type="checkbox" <?= $todo->is_done ? 'checked' : ''; ?>>
+        <input type="hidden" name="id" value="<?= h($todo->id) ?>">
+        <input type="hidden" name="token" value="<?= h($_SESSION['token']); ?>">
+        </form>
+        <span class="<?= $todo->is_done ? 'done' : ''; ?>">
+          <?= h($todo->title); ?>
+        </span>
+        <form action="?action=delete" method="post" class="delete-form">
+          <span class="delete">x</span>
+        <input type="hidden" name="id" value="<?= h($todo->id) ?>">
+        <input type="hidden" name="token" value="<?= h($_SESSION['token']); ?>">
+        </form>
+      </li>
+      <?php endforeach; ?>
+    </ul>
+  </main>
   <script src="js/main.js"></script>
 </body>
 </html>
