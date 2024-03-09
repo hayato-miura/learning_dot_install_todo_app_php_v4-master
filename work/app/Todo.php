@@ -28,7 +28,7 @@ class Todo{
               default:
               exit;
           }
-        //   exit;
+          exit;
     }}
 
     private function add()

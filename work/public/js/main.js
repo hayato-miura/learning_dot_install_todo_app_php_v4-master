@@ -7,11 +7,10 @@
             fetch('?action = toggle',{
                 method: 'POST',
                 body : new URLSearchParams({
-                    id: 'checkbox.dataset.id',   
-                    token: 'checkbox.dataset.token', 
+                    id: checkbox.dataset.id,   
+                    token: checkbox.dataset.token, 
                 })
             });
-            checkbox.nextElementSibling.classList.toggle('done');
         });
     });
 
@@ -19,10 +18,18 @@
     const deletes = document.querySelectorAll('.delete');  
     deletes.forEach(span => {
         span.addEventListener('click', () => {
-            if(!confirm('Are you sure you want to delete?')){
+            if(!confirm('Are you sure ?')){
                 return ;
             }
-            span.parentNode.submit();
+            fetch('?action = delete',{
+                method: 'POST',
+                body : new URLSearchParams({
+                    id: span.dataset.id,   
+                    token: span.dataset.token, 
+                })
+            });
+            span.parentNode.remove();
+
         });
     });
 

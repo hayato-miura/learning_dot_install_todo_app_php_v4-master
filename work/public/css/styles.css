@@ -33,7 +33,7 @@ li{
     display: flex;
     margin-bottom: 8px;
 }
-.done{
+input[type="checkbox"]:checked+span {
     text-decoration: line-through;
     color: #ccc;
 }
@@ -46,13 +46,11 @@ input[type="checkbox"]{
     color: #ccc;
     cursor: pointer;
 }
-.purge{
+.purge, .delete{
     color:#ccc;
     cursor: pointer;
     font-size: 14px;
-}
-
-.delete-form{
+    
     margin-left: auto;
     padding-left: 8px;
 }

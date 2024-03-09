@@ -6,6 +6,7 @@ require_once(__DIR__ . '/../app/config.php');
 use MyApp\Database;
 use MyApp\Todo;
 use MyApp\Utils;
+
 $pdo = Database::getInstance();
 
 $todo = new Todo($pdo);
@@ -42,14 +43,13 @@ $todos = $todo -> getAll();
         data-token="<?= Utils::h($_SESSION['token']); ?>"
         <?= $todo->is_done ? 'checked' : ''; ?>>
   
-        <span class="<?= $todo->is_done ? 'done' : ''; ?>">
-          <?= Utils::h($todo->title); ?>
+        <span><?= Utils::h($todo->title); ?></span>
+          <span 
+          data-id="<?= Utils::h($todo->id) ?>"
+          data-token="<?= Utils::h($_SESSION['token']); ?>"
+          class="delete">
+          x
         </span>
-        <form action="?action=delete" method="post" class="delete-form">
-          <span class="delete">x</span>
-        <input type="hidden" name="id" value="<?= Utils::h($todo->id) ?>">
-        <input type="hidden" name="token" value="<?= Utils::h($_SESSION['token']); ?>">
-        </form>
       </li>
       <?php endforeach; ?>
     </ul>
