@@ -8,7 +8,7 @@
             fetch('?action=toggle', { 
                 method: 'POST',
                 body: new URLSearchParams({
-                    id: checkbox.dataset.id,   
+                    id: checkbox.parentNode.dataset.id,   
                     token: token, 
                 })
             });
@@ -24,7 +24,7 @@
             fetch('?action=delete', { 
                 method: 'POST',
                 body: new URLSearchParams({
-                    id: span.dataset.id,   
+                    id: span.parentNode.dataset.id,   
                     token: token, 
                 })
             });
